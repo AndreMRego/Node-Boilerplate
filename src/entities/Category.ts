@@ -1,18 +1,19 @@
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity('games')
-class Game {
+@Entity('categories')
+class Category {
+
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
-  title:string;
+  name: string;
 
   @Column()
-  category_id: string;
+  description: string;
 
   @CreateDateColumn()
-  created_at: Date;
+  created_at: string;
 }
 
-export { Game }; 
+export { Category }

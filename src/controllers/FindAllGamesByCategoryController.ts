@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { GamesRepository } from "../repositories/GamesRepository";
 
 
-class CreateGameController {
+class FindAllGamesByCategoryController {
   private gamesRepository: GamesRepository;
 
   constructor(){
@@ -10,12 +10,12 @@ class CreateGameController {
   }
 
   async handle(request:Request, response: Response): Promise<Response> {
-    const { title, category_id } = request.body;
+    const { category_id } = request.params;
 
-    await this.gamesRepository.create({ title, category_id  });
+    const games = await this.gamesRepository.findAllByCategory({ category_id  });
 
-    return response.status(201).send();
+    return response.status(201).json(games);
   }
 }
 
-export { CreateGameController }
+export { FindAllGamesByCategoryController }
